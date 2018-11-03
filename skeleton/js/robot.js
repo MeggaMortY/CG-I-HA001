@@ -98,6 +98,7 @@ function rotateAboutPoint(obj, point, axis, theta, pointIsWorld){
 Robot.prototype.reset = function(){
     this.root.position.set(0, 0, 0);
     this.root.setRotationFromEuler(new THREE.Euler(0,0,0));
+    this.traverseAndResetColor("green");
 };
 
 
@@ -117,6 +118,17 @@ Robot.prototype.rotateOnAxis = function(axis, degree){
 // functions created by the student
 Robot.prototype.translateRight = function(){
     this.root.translateX(0.3);
+};
+
+Robot.prototype.traverseAndResetColor = function(color) {
+    this.root.traverse ( function( node ) {
+        if (node instanceof THREE.Mesh) {
+            var material = new THREE.MeshLambertMaterial( {
+                color: color,  // CSS color names can be used!
+            } );
+            node.material = material;
+        }
+    });
 };
 
 // Robot.prototype.rotateOnAxis = function(axis, degree){

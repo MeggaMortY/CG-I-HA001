@@ -17,6 +17,7 @@ SceneController.prototype.setup = function()
     this.setupControls();
     this.setupLight();
     this.setupGeometry();
+    this.assignRootNode();
 
     this.render();
     this.animate();
@@ -123,29 +124,30 @@ SceneController.prototype.translateRight = function() {
     this.robot.translateRight();
 };
 
-// SceneController.prototype.traverse = function() {
-//     this.scene.traverse ( function( node ) {
-//         if (node instanceof THREE.Mesh) {
-//             var material2 = new THREE.MeshLambertMaterial( {
-//                 color: "yellow",  // CSS color names can be used!
-//             } );
-//             node.material = material2;
-//         }
-//     });
-//
-// };
+var rootNode;
+var currentlySelectedNode;
 
+SceneController.prototype.assignRootNode = function () {
+    rootNode = this.goToRootNode();
+}
 
-var selectedNode;
-SceneController.prototype.selectParentNode = function () {
-    var rootNode = this.goToRootNode();
-    console.log(rootNode);
-    selectedNode = this.goToFirstMesh(rootNode);
-    console.log(selectedNode);
-    this.colorNode(selectedNode, "yellow");
+SceneController.prototype.selectRootNode = function () {
+    this.decolourCurrentNode();
+    currentlySelectedNode = this.goToMesh(rootNode);
+    this.colorNode(currentlySelectedNode, "yellow");
+};
 
-    // console.log(this.scene.children);
+SceneController.prototype.decolourCurrentNode = function() {
+    if ( currentlySelectedNode instanceof THREE.Mesh ) {
+        this.colorNode(currentlySelectedNode, "green");
+    }
+};
 
+SceneController.prototype.deselectCurrentNode = function() {
+    this.decolourCurrentNode();
+    currentlySelectedNode = this.goToMesh(rootNode);
+    this.decolourCurrentNode();
+    currentlySelectedNode = rootNode;
 }
 
 SceneController.prototype.goToRootNode = function () {
@@ -158,26 +160,38 @@ SceneController.prototype.goToRootNode = function () {
             break;
         }
     }
-}
+};
 
-SceneController.prototype.goToFirstMesh = function (rootNode) {
-    var rootChildren = rootNode.children;
+SceneController.prototype.selectChildNode = function () {
+    parentNode = currentlySelectedNode;
+    this.decolourCurrentNode();
+    currentlySelectedNode = this.selectFirstChild(parentNode);
+    this.colorNode(currentlySelectedNode, "yellow");
+};
+
+SceneController.prototype.selectFirstChild = function (parentNode) {
+    return this.goToMesh(parentNode);
+};
+
+SceneController.prototype.goToMesh = function (node) {
+    var nodeChildren = node.children;
+    if (nodeChildren.length === 0) {
+        console.log("no more children for this node");
+        return currentlySelectedNode;
+    }
     var firstGroup;
     var i;
-    for (i = 0; i < rootChildren.length; i++) {
-        if (rootChildren[i].type === "Group") {
-            firstGroup = rootChildren[i];
+    for (i = 0; i < nodeChildren.length; i++) {
+        if (nodeChildren[i].type === "Group") {
+            firstGroup = nodeChildren[i];
             break;
         }
     }
+    return firstGroup.children[0].children[0];
+};
 
-    var groupMesh = firstGroup.children[0].children[0];
-    return groupMesh;
-}
-
-SceneController.prototype.colorNode = function (selectedNode, color) {
-    var material = new THREE.MeshLambertMaterial( {
+SceneController.prototype.colorNode = function (currentlySelectedNode, color) {
+    currentlySelectedNode.material = new THREE.MeshLambertMaterial( {
         color: color,  // CSS color names can be used!
     } );
-    selectedNode.material = material;
-}
+};

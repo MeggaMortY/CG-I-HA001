@@ -70,7 +70,13 @@ HtmlController.prototype.onDocumentKeyDown = function(event) {
             this.sceneController.translateRight();
             break;
         case "w":
-            this.sceneController.selectParentNode();
+            this.sceneController.selectRootNode();
+            break;
+        case "s":
+            this.sceneController.selectChildNode();
+            break;
+        case "q":
+            this.sceneController.deselectCurrentNode();
             break;
     }
     this.sceneController.render();
