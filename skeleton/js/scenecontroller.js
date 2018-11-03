@@ -31,7 +31,7 @@ SceneController.prototype.setupCamera = function()
 
     // https://threejs.org/docs/#api/cameras/PerspectiveCamera
     this.camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT_RATIO, NEAR_PLANE, FAR_PLANE );
-    this.camera.position.z = 1;
+    this.camera.position.z = 1.8;
     this.camera.lookAt(this.scene.position);
 };
 
@@ -75,6 +75,7 @@ SceneController.prototype.animate = function()
 {
     //bind? --> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
     requestAnimationFrame( this.animate.bind(this) );
+
     this.controls.update();
 };
 
@@ -116,3 +117,67 @@ SceneController.prototype.handleMouseClick = function(mouse)
 SceneController.prototype.handleMouseMove = function(offsetX, offsetY)
 {
 };
+
+// functions created by the student
+SceneController.prototype.translateRight = function() {
+    this.robot.translateRight();
+};
+
+// SceneController.prototype.traverse = function() {
+//     this.scene.traverse ( function( node ) {
+//         if (node instanceof THREE.Mesh) {
+//             var material2 = new THREE.MeshLambertMaterial( {
+//                 color: "yellow",  // CSS color names can be used!
+//             } );
+//             node.material = material2;
+//         }
+//     });
+//
+// };
+
+
+var selectedNode;
+SceneController.prototype.selectParentNode = function () {
+    var rootNode = this.goToRootNode();
+    console.log(rootNode);
+    selectedNode = this.goToFirstMesh(rootNode);
+    console.log(selectedNode);
+    this.colorNode(selectedNode, "yellow");
+
+    // console.log(this.scene.children);
+
+}
+
+SceneController.prototype.goToRootNode = function () {
+    var graphNodes = this.scene.children;
+
+    var i;
+    for (i = 0; i < graphNodes.length; i++) {
+        if (graphNodes[i].type === "Object3D") {
+            return graphNodes[i];
+            break;
+        }
+    }
+}
+
+SceneController.prototype.goToFirstMesh = function (rootNode) {
+    var rootChildren = rootNode.children;
+    var firstGroup;
+    var i;
+    for (i = 0; i < rootChildren.length; i++) {
+        if (rootChildren[i].type === "Group") {
+            firstGroup = rootChildren[i];
+            break;
+        }
+    }
+
+    var groupMesh = firstGroup.children[0].children[0];
+    return groupMesh;
+}
+
+SceneController.prototype.colorNode = function (selectedNode, color) {
+    var material = new THREE.MeshLambertMaterial( {
+        color: color,  // CSS color names can be used!
+    } );
+    selectedNode.material = material;
+}
