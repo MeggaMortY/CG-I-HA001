@@ -47,8 +47,16 @@ Robot.prototype.buildRobot = function(){
     group_forearm.add(pivot_forearm);
     group_forearm.translateX(0.3);
 
+    var secondArm = createJoint(0.4, 0.1, 0.1, "blue");
+    var pivot_secondArm = addPivotTo(secondArm, 0.2);
+    pivot_secondArm.rotateOnAxis(THREE.Vector3.ZAxis, degToRad(70));
+    var group_secondArm = new THREE.Group();
+    group_secondArm.add(pivot_secondArm);
+    group_secondArm.translateX(0.3);
+
     var upperarm = createJoint(0.6, 0.1, 0.1, "green");
     upperarm.add(group_forearm);
+    upperarm.add(group_secondArm);
     var pivot_upperarm = addPivotTo(upperarm, 0.3);
     pivot_upperarm.rotateOnAxis(THREE.Vector3.ZAxis, degToRad(5));
     var group_upperarm = new THREE.Group();

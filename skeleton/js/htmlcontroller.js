@@ -64,19 +64,22 @@ HtmlController.prototype.onDocumentKeyDown = function(event) {
             toggleVisibility(document.getElementById("instructions"));
             break;
         case "a":
-            this.sceneController.rotateNode(THREE.Vector3.ZAxis, 10);
-            break;
-        case "d":
-            this.sceneController.translateRight();
+            this.sceneController.selectPreviousSibling();
             break;
         case "w":
-            this.sceneController.selectRootNode();
+            this.sceneController.getParentNode();
             break;
         case "s":
-            this.sceneController.selectChildNode();
+            this.sceneController.getFirstChild();
+            break;
+        case "d":
+            this.sceneController.getNextSibling();
             break;
         case "q":
             this.sceneController.deselectCurrentNode();
+            break;
+        case "z":
+            this.sceneController.logCSN();
             break;
     }
     this.sceneController.render();

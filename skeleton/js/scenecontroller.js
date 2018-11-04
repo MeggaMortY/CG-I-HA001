@@ -82,6 +82,7 @@ SceneController.prototype.animate = function()
 
 SceneController.prototype.reset = function()
 {
+    this.assignRootNode();
     this.robot.reset();
 };
 
@@ -125,73 +126,179 @@ SceneController.prototype.translateRight = function() {
 };
 
 var rootNode;
-var currentlySelectedNode;
+var currentlySelectedNode = null;
+var childIndex;
 
 SceneController.prototype.assignRootNode = function () {
+    console.log(this.scene);
     rootNode = this.goToRootNode();
-}
-
-SceneController.prototype.selectRootNode = function () {
-    this.decolourCurrentNode();
-    currentlySelectedNode = this.goToMesh(rootNode);
-    this.colorNode(currentlySelectedNode, "yellow");
+    currentlySelectedNode = null;
 };
-
-SceneController.prototype.decolourCurrentNode = function() {
-    if ( currentlySelectedNode instanceof THREE.Mesh ) {
-        this.colorNode(currentlySelectedNode, "green");
-    }
-};
-
-SceneController.prototype.deselectCurrentNode = function() {
-    this.decolourCurrentNode();
-    currentlySelectedNode = this.goToMesh(rootNode);
-    this.decolourCurrentNode();
-    currentlySelectedNode = rootNode;
-}
 
 SceneController.prototype.goToRootNode = function () {
     var graphNodes = this.scene.children;
-
     var i;
     for (i = 0; i < graphNodes.length; i++) {
         if (graphNodes[i].type === "Object3D") {
-            return graphNodes[i];
-            break;
+            return graphNodes[i].children[0];
         }
     }
 };
 
-SceneController.prototype.selectChildNode = function () {
-    parentNode = currentlySelectedNode;
-    this.decolourCurrentNode();
-    currentlySelectedNode = this.selectFirstChild(parentNode);
-    this.colorNode(currentlySelectedNode, "yellow");
+SceneController.prototype.getParentNode = function () {
+    if (currentlySelectedNode === null) {
+        currentlySelectedNode = rootNode;
+        this.colorNode(currentlySelectedNode, "yellow");
+        return currentlySelectedNode;
+    } else {
+        if ( currentlySelectedNode.parent.parent.parent === null ) {
+            console.log("This is the first parent in the hierarchy.");
+        } else {
+            this.decolourNode(currentlySelectedNode);
+            currentlySelectedNode = currentlySelectedNode.parent.parent.parent;
+            this.colorNode(currentlySelectedNode, "yellow");
+            return currentlySelectedNode;
+        }
+    }
 };
 
-SceneController.prototype.selectFirstChild = function (parentNode) {
-    return this.goToMesh(parentNode);
+SceneController.prototype.getFirstChild = function () {
+    if (currentlySelectedNode === null) {
+        console.log("No parent currently selected.");
+    } else {
+        temp = this.getFirstChildGroupFrom(currentlySelectedNode);
+        if ( temp !== undefined ) {
+            this.decolourNode(currentlySelectedNode);
+            this.colorNode(temp, "yellow");
+            currentlySelectedNode = temp;
+            childIndex = 0;
+        }
+    }
 };
 
-SceneController.prototype.goToMesh = function (node) {
-    var nodeChildren = node.children;
+SceneController.prototype.getFirstChildGroupFrom = function (node) {
+    var nodeChildren = node.children[0].children[0].children;
     if (nodeChildren.length === 0) {
         console.log("no more children for this node");
         return currentlySelectedNode;
+    } else {
+        return node.children[0].children[0].children[0];
     }
-    var firstGroup;
-    var i;
-    for (i = 0; i < nodeChildren.length; i++) {
-        if (nodeChildren[i].type === "Group") {
-            firstGroup = nodeChildren[i];
-            break;
-        }
-    }
-    return firstGroup.children[0].children[0];
 };
 
-SceneController.prototype.colorNode = function (currentlySelectedNode, color) {
-    currentlySelectedNode.material = new THREE.MeshLambertMaterial( {
+SceneController.prototype.getNextSibling = function() {
+    if ( currentlySelectedNode === null ) {
+        console.log("No child node with parent currently selected.");
+    } else if ( currentlySelectedNode === rootNode ) {
+        console.log("Current child is the rootNode, this doesn't have any siblings.");
+    } else {
+        var parentMesh = currentlySelectedNode.parent;
+        if ( parentMesh.children.length > 1 ) {
+            if ( childIndex + 1 < parentMesh.children.length ) {
+                childIndex += 1;
+                temp = parentMesh.children[childIndex];
+                this.decolourNode(currentlySelectedNode);
+                this.colorNode(temp, "yellow");
+                currentlySelectedNode = temp;
+            } else {
+                console.log("The are no more further siblings. Use 'a' to go back to previous siblings.");
+            }
+        } else {
+            console.log("There is only one child for this parent.");
+        }
+    }
+};
+
+
+// SceneController.prototype.selectRootNode = function () {
+//     this.decolourNode();
+//     currentlySelectedNode = this.getFirstChildGroupFrom(rootNode);
+//     this.colorNode(currentlySelectedNode, "yellow");
+// };
+//
+//
+//
+// SceneController.prototype.deselectCurrentNode = function() {
+//     this.decolourNode();
+//     currentlySelectedNode = this.getFirstChildGroupFrom(rootNode);
+//     this.decolourNode();
+//     currentlySelectedNode = rootNode;
+// };
+//
+
+//
+// SceneController.prototype.selectNextSibling = function() {
+//     this.decolourNode();
+//     currentlySelectedNode = this.findNextSibling(parentNode);
+//     this.colorNode(currentlySelectedNode, "yellow");
+// };
+//
+// SceneController.prototype.findNextSibling = function (parentNode){
+//     var i;
+//     for (i = 0; i < parentNode.children.length; i++) {
+//         if (parentNode.children[i].type === "Group") {
+//             if (parentNode.children[i].children[0].children[0].uuid === currentlySelectedNode.uuid) {
+//                 continue;
+//             } else if (parentNode.children[i].children[0].children[0].uuid !== currentlySelectedNode.uuid) {
+//                 // previousSibling = currentlySelectedNode;
+//                 return parentNode.children[i].children[0].children[0];
+//             }
+//         }
+//     }
+// };
+//
+// SceneController.prototype.selectPreviousSibling = function() {
+//     this.deselectCurrentNode();
+//     currentlySelectedNode = this.findPreviousSibling(parentNode);
+//     // this.colorNode(currentlySelectedNode, "yellow");
+// };
+//
+// // SceneController.prototype.findPreviousSibling = function() {
+// //     if ( !(previousSibling instanceof THREE.Mesh) || (previousSibling.uuid === currentlySelectedNode.uuid) ) {
+// //         console.log("this is the very first child, no previous siblings.");
+// //         return currentlySelectedNode;
+// //     } else {
+// //         return previousSibling;
+// //     }
+// // }
+//
+// SceneController.prototype.findPreviousSibling = function (parentNode){
+//     var i;
+//     var previousSibling = null;
+//     for (i = 0; i < parentNode.children.length; i++) {
+//         if (parentNode.children[i].type === "Mesh") {
+//             if (parentNode.children[i].children[0].children[0].uuid !== currentlySelectedNode.uuid) {
+//                 previousSibling = parentNode.children[i].children[0].children[0];
+//             } else if (parentNode.children[i].children[0].children[0].uuid === currentlySelectedNode.uuid) {
+//                 if (previousSibling === null) {
+//                     console.log("this is the very first child, no previous siblings.");
+//                     return currentlySelectedNode;
+//                 } else {
+//                     console.log("this is NOT the very first child, no previous siblings.");
+//                     return previousSibling;
+//                 }
+//             }
+//         } else {
+//             continue;
+//         }
+//     }
+// };
+//
+
+
+
+SceneController.prototype.decolourNode = function(node) {
+    if ( node !== null ) {
+        this.colorNode(node, "green");
+    }
+};
+
+SceneController.prototype.colorNode = function (node, color) {
+    node.children[0].children[0].material = new THREE.MeshLambertMaterial( {
         color: color,  // CSS color names can be used!
     } );
+};
+
+SceneController.prototype.logCSN = function () {
+    console.log(currentlySelectedNode);
 };
