@@ -54,7 +54,7 @@ Robot.prototype.buildRobot = function(){
     group_secondArm.add(pivot_secondArm);
     group_secondArm.translateX(0.3);
 
-    var upperarm = createJoint(0.6, 0.1, 0.1, "green");
+    var upperarm = createJoint(0.6, 0.1, 0.1, "blue");
     upperarm.add(group_forearm);
     upperarm.add(group_secondArm);
     var pivot_upperarm = addPivotTo(upperarm, 0.3);
@@ -103,11 +103,11 @@ function rotateAboutPoint(obj, point, axis, theta, pointIsWorld){
     obj.rotateOnAxis(axis, theta); // rotate the OBJECT
 }
 
-Robot.prototype.reset = function(){
-    this.root.position.set(0, 0, 0);
-    this.root.setRotationFromEuler(new THREE.Euler(0,0,0));
-    this.traverseAndResetColor("green");
-};
+// Robot.prototype.reset = function(){
+//     this.root.position.set(0, 0, 0);
+//     this.root.setRotationFromEuler(new THREE.Euler(0,0,0));
+//     this.traverseAndResetColor("blue");
+// };
 
 
 Robot.prototype.selectChild = function (forward) {
@@ -119,8 +119,8 @@ Robot.prototype.selectSibling = function(forward){
 Robot.prototype.toggleSelection = function(){
 };
 
-Robot.prototype.rotateOnAxis = function(axis, degree){
-    this.root.rotateOnAxis(axis, degToRad(degree));
+Robot.prototype.rotateOnAxis = function(node, axis, degree){
+    node.children[0].rotateOnAxis(axis, degToRad(degree));
 };
 
 // functions created by the student
@@ -130,6 +130,10 @@ Robot.prototype.translateRight = function(){
 
 Robot.prototype.traverseAndResetColor = function(color) {
     this.root.traverse ( function( node ) {
+        if ( node instanceof THREE.Object3D) {
+            // node.position.set(0, 0, 0);
+            node.rotation = degToRad(0);
+        }
         if (node instanceof THREE.Mesh) {
             var material = new THREE.MeshLambertMaterial( {
                 color: color,  // CSS color names can be used!
@@ -138,7 +142,3 @@ Robot.prototype.traverseAndResetColor = function(color) {
         }
     });
 };
-
-// Robot.prototype.rotateOnAxis = function(axis, degree){
-//     this.root.rotateOnAxis(axis, degToRad(degree));
-// };

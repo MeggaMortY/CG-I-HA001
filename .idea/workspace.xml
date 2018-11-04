@@ -42,12 +42,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="71" />
-          <entry key="js" value="8590" />
+          <entry key="js" value="9040" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="8590" />
+          <entry key="JavaScript" value="9040" />
           <entry key="PLAIN_TEXT" value="71" />
         </counts>
       </usages-collector>
@@ -81,8 +81,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/skeleton/js/htmlcontroller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="545">
-              <caret line="75" column="50" lean-forward="true" selection-start-line="75" selection-start-column="50" selection-end-line="75" selection-end-column="50" />
+            <state relative-caret-position="203">
+              <caret line="54" column="41" lean-forward="true" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -90,8 +90,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/skeleton/js/scenecontroller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="211" lean-forward="true" selection-start-line="211" selection-end-line="211" />
+            <state relative-caret-position="287">
+              <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
             </state>
           </provider>
         </entry>
@@ -99,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/skeleton/js/robot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="57" column="10" lean-forward="true" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
+            <state relative-caret-position="2574">
+              <caret line="143" column="2" selection-start-line="143" selection-start-column="2" selection-end-line="143" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -109,10 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>torso</find>
-      <find>shuderarm</find>
-      <find>shoulder_arm</find>
-      <find>shudferarm</find>
       <find>cube</find>
       <find>robot</find>
       <find>geomet</find>
@@ -122,7 +118,6 @@
       <find>this.</find>
       <find>render</find>
       <find>controls</find>
-      <find>animate</find>
       <find>group_forearm</find>
       <find>goToFirstMesh</find>
       <find>selectedNode</find>
@@ -139,6 +134,11 @@
       <find>goToFirstMeshFrom</find>
       <find>decolourCurrentNode</find>
       <find>reset</find>
+      <find>rotateNode</find>
+      <find>deco</find>
+      <find>green</find>
+      <find>new ro</find>
+      <find>animate</find>
     </findStrings>
     <replaceStrings>
       <replace>translation_m</replace>
@@ -164,8 +164,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/examples/00b-input/js/main.js" />
-        <option value="$PROJECT_DIR$/skeleton/js/robot.js" />
         <option value="$PROJECT_DIR$/skeleton/js/htmlcontroller.js" />
+        <option value="$PROJECT_DIR$/skeleton/js/robot.js" />
         <option value="$PROJECT_DIR$/skeleton/js/scenecontroller.js" />
       </list>
     </option>
@@ -340,12 +340,12 @@
       <workItem from="1540718377842" duration="1368000" />
       <workItem from="1540929625274" duration="5036000" />
       <workItem from="1540970742775" duration="6904000" />
-      <workItem from="1541019142334" duration="38398000" />
+      <workItem from="1541019142334" duration="41193000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52007000" />
+    <option name="totallyTimeSpent" value="54802000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="33" width="2560" height="1004" extended-state="6" />
@@ -491,22 +491,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/js/robot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="57" column="10" lean-forward="true" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
+        <state relative-caret-position="2574">
+          <caret line="143" column="2" selection-start-line="143" selection-start-column="2" selection-end-line="143" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/js/htmlcontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="75" column="50" lean-forward="true" selection-start-line="75" selection-start-column="50" selection-end-line="75" selection-end-column="50" />
+        <state relative-caret-position="203">
+          <caret line="54" column="41" lean-forward="true" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/js/scenecontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="211" lean-forward="true" selection-start-line="211" selection-end-line="211" />
+        <state relative-caret-position="287">
+          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
         </state>
       </provider>
     </entry>

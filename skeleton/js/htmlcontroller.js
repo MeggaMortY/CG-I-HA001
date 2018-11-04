@@ -55,16 +55,22 @@ HtmlController.prototype.onDocumentKeyDown = function(event) {
             this.sceneController.reset();
             break;
         case "ArrowUp":
-            this.sceneController.rotateNode(THREE.Vector3.XAxis, 3);
+            this.sceneController.rotateNode(THREE.Vector3.ZAxis, 3);
             break;
         case "ArrowDown":
-            this.sceneController.rotateNode(THREE.Vector3.XAxis, -3);
+            this.sceneController.rotateNode(THREE.Vector3.ZAxis, -3);
+            break;
+        case "ArrowLeft":
+            this.sceneController.rotateNode(THREE.Vector3.YAxis, -3);
+            break;
+        case "ArrowRight":
+            this.sceneController.rotateNode(THREE.Vector3.YAxis, 3);
             break;
         case "h":
             toggleVisibility(document.getElementById("instructions"));
             break;
         case "a":
-            this.sceneController.selectPreviousSibling();
+            this.sceneController.getPreviousSibling();
             break;
         case "w":
             this.sceneController.getParentNode();

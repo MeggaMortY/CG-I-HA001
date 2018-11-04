@@ -76,29 +76,18 @@ SceneController.prototype.animate = function()
 {
     //bind? --> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
     requestAnimationFrame( this.animate.bind(this) );
-
     this.controls.update();
 };
 
 SceneController.prototype.reset = function()
 {
-    this.assignRootNode();
-    this.robot.reset();
+    this.scene.remove(rootNode.parent);
+    this.setup();
 };
 
 SceneController.prototype.toggleSelection = function()
 {
     this.robot.toggleSelection();
-};
-
-SceneController.prototype.selectSibling = function(forward)
-{
-    this.robot.selectSibling(forward);
-};
-
-SceneController.prototype.selectChild = function(forward)
-{
-    this.robot.selectChild(forward);
 };
 
 SceneController.prototype.toggleAxisVisibility = function ()
@@ -108,7 +97,7 @@ SceneController.prototype.toggleAxisVisibility = function ()
 
 SceneController.prototype.rotateNode = function(axis, degree)
 {
-    this.robot.rotateOnAxis(axis, degree);
+    this.robot.rotateOnAxis(currentlySelectedNode, axis, degree);
 };
 
 SceneController.prototype.handleMouseClick = function(mouse)
@@ -201,7 +190,7 @@ SceneController.prototype.getNextSibling = function() {
                 this.colorNode(temp, "yellow");
                 currentlySelectedNode = temp;
             } else {
-                console.log("The are no more further siblings. Use 'a' to go back to previous siblings.");
+                console.log("The are no more further siblings. Use 'a' to go back to previous sibling.");
             }
         } else {
             console.log("There is only one child for this parent.");
@@ -209,87 +198,32 @@ SceneController.prototype.getNextSibling = function() {
     }
 };
 
-
-// SceneController.prototype.selectRootNode = function () {
-//     this.decolourNode();
-//     currentlySelectedNode = this.getFirstChildGroupFrom(rootNode);
-//     this.colorNode(currentlySelectedNode, "yellow");
-// };
-//
-//
-//
-// SceneController.prototype.deselectCurrentNode = function() {
-//     this.decolourNode();
-//     currentlySelectedNode = this.getFirstChildGroupFrom(rootNode);
-//     this.decolourNode();
-//     currentlySelectedNode = rootNode;
-// };
-//
-
-//
-// SceneController.prototype.selectNextSibling = function() {
-//     this.decolourNode();
-//     currentlySelectedNode = this.findNextSibling(parentNode);
-//     this.colorNode(currentlySelectedNode, "yellow");
-// };
-//
-// SceneController.prototype.findNextSibling = function (parentNode){
-//     var i;
-//     for (i = 0; i < parentNode.children.length; i++) {
-//         if (parentNode.children[i].type === "Group") {
-//             if (parentNode.children[i].children[0].children[0].uuid === currentlySelectedNode.uuid) {
-//                 continue;
-//             } else if (parentNode.children[i].children[0].children[0].uuid !== currentlySelectedNode.uuid) {
-//                 // previousSibling = currentlySelectedNode;
-//                 return parentNode.children[i].children[0].children[0];
-//             }
-//         }
-//     }
-// };
-//
-// SceneController.prototype.selectPreviousSibling = function() {
-//     this.deselectCurrentNode();
-//     currentlySelectedNode = this.findPreviousSibling(parentNode);
-//     // this.colorNode(currentlySelectedNode, "yellow");
-// };
-//
-// // SceneController.prototype.findPreviousSibling = function() {
-// //     if ( !(previousSibling instanceof THREE.Mesh) || (previousSibling.uuid === currentlySelectedNode.uuid) ) {
-// //         console.log("this is the very first child, no previous siblings.");
-// //         return currentlySelectedNode;
-// //     } else {
-// //         return previousSibling;
-// //     }
-// // }
-//
-// SceneController.prototype.findPreviousSibling = function (parentNode){
-//     var i;
-//     var previousSibling = null;
-//     for (i = 0; i < parentNode.children.length; i++) {
-//         if (parentNode.children[i].type === "Mesh") {
-//             if (parentNode.children[i].children[0].children[0].uuid !== currentlySelectedNode.uuid) {
-//                 previousSibling = parentNode.children[i].children[0].children[0];
-//             } else if (parentNode.children[i].children[0].children[0].uuid === currentlySelectedNode.uuid) {
-//                 if (previousSibling === null) {
-//                     console.log("this is the very first child, no previous siblings.");
-//                     return currentlySelectedNode;
-//                 } else {
-//                     console.log("this is NOT the very first child, no previous siblings.");
-//                     return previousSibling;
-//                 }
-//             }
-//         } else {
-//             continue;
-//         }
-//     }
-// };
-//
-
-
+SceneController.prototype.getPreviousSibling = function() {
+    if (currentlySelectedNode === null) {
+        console.log("No child node with parent currently selected.");
+    } else if (currentlySelectedNode === rootNode) {
+        console.log("Current child is the rootNode, this doesn't have any siblings.");
+    } else {
+        var parentMesh = currentlySelectedNode.parent;
+        if (parentMesh.children.length > 1) {
+            if (childIndex - 1 >= 0) {
+                childIndex -= 1;
+                temp = parentMesh.children[childIndex];
+                this.decolourNode(currentlySelectedNode);
+                this.colorNode(temp, "yellow");
+                currentlySelectedNode = temp;
+            } else {
+                console.log("The are no more previous siblings. Use 'd' to go forward to next sibling.");
+            }
+        } else {
+            console.log("There is only one child for this parent.");
+        }
+    }
+};
 
 SceneController.prototype.decolourNode = function(node) {
     if ( node !== null ) {
-        this.colorNode(node, "green");
+        this.colorNode(node, "blue");
     }
 };
 
