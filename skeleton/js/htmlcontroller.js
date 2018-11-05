@@ -81,8 +81,8 @@ HtmlController.prototype.onDocumentKeyDown = function(event) {
         case "d":
             this.sceneController.getNextSibling();
             break;
-        case "q":
-            this.sceneController.deselectCurrentNode();
+        case "c":
+            this.sceneController.traverseAndToggleAxesVisibility();
             break;
         case "z":
             this.sceneController.logCSN();

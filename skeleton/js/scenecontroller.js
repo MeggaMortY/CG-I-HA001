@@ -90,9 +90,25 @@ SceneController.prototype.toggleSelection = function()
     this.robot.toggleSelection();
 };
 
-SceneController.prototype.toggleAxisVisibility = function ()
+SceneController.prototype.traverseAndToggleAxesVisibility = function ()
 {
     // utils provides two helper functions which could be used
+    var upperarm_axes = rootNode.children[0].children[1];
+    var forearm_axes = rootNode.children[0].children[0].children[0].children[0].children[1];
+    var secondArm_axes = rootNode.children[0].children[0].children[1].children[0].children[1];
+    this.toggleAxesVisibility(upperarm_axes);
+    this.toggleAxesVisibility(forearm_axes);
+    this.toggleAxesVisibility(secondArm_axes);
+};
+
+SceneController.prototype.toggleAxesVisibility = function (parent) {
+    parent.children.forEach(function(axis) {
+        if (axis.material.visible === true) {
+            axis.material.visible = false;
+        } else {
+            axis.material.visible = true;
+        }
+    });
 };
 
 SceneController.prototype.rotateNode = function(axis, degree)
@@ -234,5 +250,6 @@ SceneController.prototype.colorNode = function (node, color) {
 };
 
 SceneController.prototype.logCSN = function () {
+    console.log(rootNode);
     console.log(currentlySelectedNode);
 };
