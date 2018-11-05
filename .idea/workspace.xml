@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32d58444-0664-4c98-bef9-f1dfffaba3a1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skeleton/js/htmlcontroller.js" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/js/htmlcontroller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skeleton/js/robot.js" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/js/robot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skeleton/js/scenecontroller.js" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/js/scenecontroller.js" afterDir="false" />
     </list>
@@ -43,14 +41,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="83" />
-          <entry key="js" value="9716" />
+          <entry key="dummy" value="108" />
+          <entry key="js" value="9720" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="9716" />
-          <entry key="PLAIN_TEXT" value="83" />
+          <entry key="JavaScript" value="9720" />
+          <entry key="PLAIN_TEXT" value="108" />
         </counts>
       </usages-collector>
     </session>
@@ -105,8 +103,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/skeleton/js/robot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+            <state relative-caret-position="311">
+              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
             </state>
           </provider>
         </entry>
@@ -115,9 +113,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>geomet</find>
-      <find>geome</find>
-      <find>root</find>
       <find>new Robot</find>
       <find>this.</find>
       <find>render</find>
@@ -145,6 +140,9 @@
       <find>reset</find>
       <find>src</find>
       <find>axes1</find>
+      <find>axes2</find>
+      <find>secondArm</find>
+      <find>axes3</find>
     </findStrings>
     <replaceStrings>
       <replace>translation_m</replace>
@@ -162,6 +160,9 @@
       <replace>getFirstChildGroupFrom</replace>
       <replace>decolourNode</replace>
       <replace>axes_forearm</replace>
+      <replace>axes_secondArm</replace>
+      <replace>secondarm</replace>
+      <replace>axes_upperarm</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -184,7 +185,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="y" value="33" />
     <option name="width" value="1055" />
     <option name="height" value="753" />
@@ -348,18 +349,18 @@
       <workItem from="1540929625274" duration="5036000" />
       <workItem from="1540970742775" duration="6904000" />
       <workItem from="1541019142334" duration="42518000" />
-      <workItem from="1541434470411" duration="4203000" />
+      <workItem from="1541434470411" duration="4395000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60330000" />
+    <option name="totallyTimeSpent" value="60522000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="33" width="2560" height="1004" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15250888" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15250888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -517,8 +518,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/js/robot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="311">
+          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
         </state>
       </provider>
     </entry>

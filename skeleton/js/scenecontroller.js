@@ -95,10 +95,10 @@ SceneController.prototype.traverseAndToggleAxesVisibility = function ()
     // utils provides two helper functions which could be used
     var upperarm_axes = rootNode.children[0].children[1];
     var forearm_axes = rootNode.children[0].children[0].children[0].children[0].children[1];
-    var secondArm_axes = rootNode.children[0].children[0].children[1].children[0].children[1];
+    var secondarm_axes = rootNode.children[0].children[0].children[1].children[0].children[1];
     this.toggleAxesVisibility(upperarm_axes);
     this.toggleAxesVisibility(forearm_axes);
-    this.toggleAxesVisibility(secondArm_axes);
+    this.toggleAxesVisibility(secondarm_axes);
 };
 
 SceneController.prototype.toggleAxesVisibility = function (parent) {

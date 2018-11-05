@@ -15,21 +15,21 @@ Robot.prototype.buildRobot = function(){
     group_forearm.add(pivot_forearm);
     group_forearm.translateX(0.3);
 
-    var secondArm = createJoint(0.4, 0.1, 0.1, "blue");
-    var pivot_secondArm = addPivotTo(secondArm, 0.2);
-    var axes2 = buildAxes(0.5);
-    pivot_secondArm.add(axes2);
-    pivot_secondArm.rotateOnAxis(THREE.Vector3.ZAxis, degToRad(70));
-    var group_secondArm = new THREE.Group();
-    group_secondArm.add(pivot_secondArm);
-    group_secondArm.translateX(0.3);
+    var secondarm = createJoint(0.4, 0.1, 0.1, "blue");
+    var pivot_secondarm = addPivotTo(secondarm, 0.2);
+    var axes_secondarm = buildAxes(0.5);
+    pivot_secondarm.add(axes_secondarm);
+    pivot_secondarm.rotateOnAxis(THREE.Vector3.ZAxis, degToRad(70));
+    var group_secondarm = new THREE.Group();
+    group_secondarm.add(pivot_secondarm);
+    group_secondarm.translateX(0.3);
 
     var upperarm = createJoint(0.6, 0.1, 0.1, "blue");
     upperarm.add(group_forearm);
-    upperarm.add(group_secondArm);
+    upperarm.add(group_secondarm);
     var pivot_upperarm = addPivotTo(upperarm, 0.3);
-    var axes3 = buildAxes(0.5);
-    pivot_upperarm.add(axes3);
+    var axes_upperarm = buildAxes(0.5);
+    pivot_upperarm.add(axes_upperarm);
     pivot_upperarm.rotateOnAxis(THREE.Vector3.ZAxis, degToRad(5));
     var group_upperarm = new THREE.Group();
     group_upperarm.add(pivot_upperarm);
@@ -48,20 +48,12 @@ function addPivotTo(object, object_offset){
 
 function createJoint(geo_x, geo_y, geo_z, color){
     var geometry = new THREE.BoxGeometry(geo_x, geo_y, geo_z);
-    // https://threejs.org/docs/#api/materials/MeshLambertMaterial
     var material = new THREE.MeshLambertMaterial( {
-        color: color,  // CSS color names can be used!
+        color: color,
     } );
-    //a mesh consists of geometry and a material; added to the scene
     var joint = new THREE.Mesh( geometry, material );
     return joint
 }
-
-// Robot.prototype.selectChild = function (forward) {
-// };
-//
-// Robot.prototype.selectSibling = function(forward){
-// };
 
 Robot.prototype.toggleSelection = function(){
 };
@@ -74,18 +66,3 @@ Robot.prototype.rotateOnAxis = function(node, axis, degree){
 Robot.prototype.translateRight = function(){
     this.root.translateX(0.3);
 };
-
-// Robot.prototype.traverseAndResetColor = function(color) {
-//     this.root.traverse ( function( node ) {
-//         if ( node instanceof THREE.Object3D) {
-//             // node.position.set(0, 0, 0);
-//             node.rotation = degToRad(0);
-//         }
-//         if (node instanceof THREE.Mesh) {
-//             var material = new THREE.MeshLambertMaterial( {
-//                 color: color,  // CSS color names can be used!
-//             } );
-//             node.material = material;
-//         }
-//     });
-// };
