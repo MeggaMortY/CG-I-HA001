@@ -5,7 +5,6 @@ var Robot = function() {
 };
 
 Robot.prototype.buildRobot = function(){
-
     var forearm = createJoint(0.4, 0.1, 0.1, "blue");
     var pivot_forearm = addPivotTo(forearm, 0.2);
     var axes_forearm = buildAxes(0.5);
@@ -36,7 +35,7 @@ Robot.prototype.buildRobot = function(){
 
     this.root.add(group_upperarm);
 
-    return this.root
+    return this.root;
 };
 
 function addPivotTo(object, object_offset){
@@ -52,7 +51,7 @@ function createJoint(geo_x, geo_y, geo_z, color){
         color: color,
     } );
     var joint = new THREE.Mesh( geometry, material );
-    return joint
+    return joint;
 }
 
 Robot.prototype.toggleSelection = function(){

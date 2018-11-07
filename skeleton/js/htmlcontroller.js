@@ -4,6 +4,7 @@ var HtmlController = function(sceneController)
     this.mouseStart = new THREE.Vector2();
 };
 
+
 HtmlController.prototype.setup = function()
 {
     //bind? --> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
@@ -31,9 +32,10 @@ HtmlController.prototype.onDocumentMouseDown = function(event)
     // window.console.log("mouse down at " + event.x + " / " + event.y + " with button " + event.button);
 };
 
-HtmlController.prototype.onDocumentMouseMove = function(event)
+HtmlController.prototype.onDocumentMouseMove = function (event)
 {
     // window.console.log("mouse move");
+
 };
 
 HtmlController.prototype.onDocumentMouseUp = function(event)

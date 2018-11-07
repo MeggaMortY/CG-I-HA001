@@ -45,7 +45,7 @@ function buildAxis ( src, dst, colorHex, dashed ) {
 
 function toggleVisibility(element) {
     var style = element.style;
-    if (style.visibility != "hidden") {
+    if (style.visibility !== "hidden") {
         style.visibility = "hidden";
     } else {
         style.visibility = "visible";

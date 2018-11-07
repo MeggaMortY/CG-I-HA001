@@ -5,7 +5,91 @@ var SceneController = function(document)
         antialias: true,  // to enable anti-alias and get smoother output
         preserveDrawingBuffer: true  // to allow screenshot
     } );
+    this.raycaster = new THREE.Raycaster();
+    this.mouse = new THREE.Vector2();
+    this.targetRotation = new THREE.Vector2();
+    this.mouseDown = new THREE.Vector2();
+    this.targetRotationDown = new THREE.Vector2();
 };
+
+SceneController.prototype.onDocumentMouseDown = function( event ) {
+
+    event.preventDefault();
+
+    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+
+    this.mouseDown.x = event.clientX - (window.innerWidth / 2);
+    this.targetRotationDown.x = this.targetRotation.x;
+
+    this.mouseDown.y = event.clientY - (window.innerHeight / 2);
+    this.targetRotationDown.y = this.targetRotation.y;
+};
+
+SceneController.prototype.onMouseMove = function( event )
+{
+    // calculate mouse position in normalized device coordinates
+    // (-1 to +1) for both components
+
+    this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    this.targetRotation.x = ( this.mouse.x - this.mouseDown.x ) * 0.00025;
+    this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    this.targetRotation.y = ( this.mouse.y - this.mouseDown.y ) * 0.00025;
+};
+
+SceneController.prototype.traverseSceneAndGrabMeshes = function() {
+    this.scene.traverse( function( node ) {
+
+        if ( node instanceof THREE.Mesh ) {
+            meshes.push(node);
+        }
+
+    } );
+};
+
+
+var rotWorldMatrix;
+
+// Rotate an object around an arbitrary axis in world space
+function rotateAroundWorldAxis(object, axis, radians) {
+    rotWorldMatrix = new THREE.Matrix4();
+    rotWorldMatrix.makeRotationAxis(axis.normalize(), radians);
+    rotWorldMatrix.multiply(object.matrix);        // pre-multiply
+    object.matrix = rotWorldMatrix;
+    object.rotation.setFromRotationMatrix(object.matrix);
+}
+
+function rotateAroundObjectAxis(object, axis, radians) {
+    var rotationMatrix = new THREE.Matrix4();
+
+    rotationMatrix.makeRotationAxis(axis.normalize(), radians);
+    object.matrix.multiply(rotationMatrix);
+    object.rotation.setFromRotationMatrix(object.matrix);
+}
+
+SceneController.prototype.renderBla = function()
+{
+    // update the picking ray with the camera and mouse position
+    this.raycaster.setFromCamera( this.mouse, this.camera );
+    // calculate objects intersecting the picking ray
+    var intersects = this.raycaster.intersectObjects( meshes);
+
+    // console.log(intersects);
+    for ( var i = 0; i < intersects.length; i++ ) {
+        if ( currentlyPickedMesh !== null ) {
+            // console.log(currentlyPickedMesh.parent);
+            rotateAroundObjectAxis(currentlyPickedMesh.parent.parent, new THREE.Vector3(1,0,0), degToRad(10));
+            this.decolourNode(currentlyPickedMesh.parent.parent);
+        }
+        currentlyPickedMesh = intersects[ i ].object;
+        intersects[ i ].object.material.color.set( 0xff0000 );
+
+    }
+    this.renderer.render( this.scene, this.camera );
+
+};
+
+
 
 SceneController.prototype.setup = function()
 {
@@ -20,6 +104,7 @@ SceneController.prototype.setup = function()
     this.assignRootNode();
 
     this.render();
+    this.traverseSceneAndGrabMeshes();
     this.animate();
 };
 
@@ -76,6 +161,8 @@ SceneController.prototype.animate = function()
 {
     //bind? --> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
     requestAnimationFrame( this.animate.bind(this) );
+    window.addEventListener( 'mousemove', this.onMouseMove.bind(this), false );
+    requestAnimationFrame( this.renderBla.bind(this) );
     this.controls.update();
 };
 
@@ -133,9 +220,11 @@ SceneController.prototype.translateRight = function() {
 var rootNode;
 var currentlySelectedNode = null;
 var childIndex;
+var meshes = [];
+var currentlyPickedMesh = null;
 
 SceneController.prototype.assignRootNode = function () {
-    console.log(this.scene);
+    console.log(this.scene.children);
     rootNode = this.goToRootNode();
     currentlySelectedNode = null;
 };
@@ -149,6 +238,8 @@ SceneController.prototype.goToRootNode = function () {
         }
     }
 };
+
+
 
 SceneController.prototype.getParentNode = function () {
     if (currentlySelectedNode === null) {
