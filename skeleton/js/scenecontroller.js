@@ -163,7 +163,7 @@ SceneController.prototype.animate = function()
     //bind? --> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
     if (raycastingEnabled === true) {
         requestAnimationFrame( this.renderRaycasting.bind(this) );
-    } else if (raycastingEnabled === false) {
+    } else if (raycastingEnabled === false && currentlyPickedMesh instanceof THREE.Mesh) {
         this.decolourNode(currentlyPickedMesh.parent.parent);
     }
     requestAnimationFrame( this.animate.bind(this) );
@@ -175,7 +175,12 @@ SceneController.prototype.reset = function()
     document.removeEventListener( 'mousemove', this.onDocumentMouseDown, false );
     raycastingEnabled = false;
     this.scene.remove(rootNode.parent);
-    this.setup();
+    this.setupCamera();
+    this.setupControls();
+    this.setupGeometry();
+    this.assignRootNode();
+    this.render();
+    this.traverseSceneAndGrabMeshes();
 };
 
 SceneController.prototype.toggleSelection = function()
@@ -221,9 +226,6 @@ SceneController.prototype.handleMouseMove = function(offsetX, offsetY)
 };
 
 // functions created by the student
-SceneController.prototype.translateRight = function() {
-    this.robot.translateRight();
-};
 
 var rootNode;
 var currentlySelectedNode = null;
@@ -232,7 +234,6 @@ var meshes = [];
 var currentlyPickedMesh = null;
 
 SceneController.prototype.assignRootNode = function () {
-    console.log(this.scene.children);
     rootNode = this.goToRootNode();
     currentlySelectedNode = null;
 };
@@ -246,8 +247,6 @@ SceneController.prototype.goToRootNode = function () {
         }
     }
 };
-
-
 
 SceneController.prototype.getParentNode = function () {
     if (currentlySelectedNode === null) {

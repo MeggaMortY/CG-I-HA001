@@ -70,8 +70,3 @@ Robot.prototype.toggleSelection = function(){
 Robot.prototype.rotateOnAxis = function(node, axis, degree){
     node.children[0].rotateOnAxis(axis, degToRad(degree));
 };
-
-// functions created by the student
-Robot.prototype.translateRight = function(){
-    this.root.translateX(0.3);
-};

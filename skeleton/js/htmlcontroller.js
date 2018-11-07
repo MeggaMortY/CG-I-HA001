@@ -89,9 +89,6 @@ HtmlController.prototype.onDocumentKeyDown = function(event) {
         case "e":
             this.sceneController.toggleRaycasting();
             break;
-        case "z":
-            this.sceneController.logCSN();
-            break;
     }
     this.sceneController.render();
 };
