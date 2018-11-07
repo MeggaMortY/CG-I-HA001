@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32d58444-0664-4c98-bef9-f1dfffaba3a1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skeleton/js/htmlcontroller.js" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/js/htmlcontroller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skeleton/js/robot.js" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/js/robot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skeleton/js/scenecontroller.js" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/js/scenecontroller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skeleton/js/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/js/util.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -47,12 +45,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="111" />
-          <entry key="js" value="12030" />
+          <entry key="js" value="12448" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="12030" />
+          <entry key="JavaScript" value="12448" />
           <entry key="PLAIN_TEXT" value="111" />
         </counts>
       </usages-collector>
@@ -83,8 +81,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/skeleton/js/htmlcontroller.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="324">
-                  <caret line="18" column="48" lean-forward="true" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+                <state relative-caret-position="474">
+                  <caret line="86" column="64" selection-start-line="86" selection-start-column="33" selection-end-line="86" selection-end-column="64" />
                 </state>
               </provider>
             </entry>
@@ -92,8 +90,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/skeleton/js/scenecontroller.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="293">
-                  <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
+                <state relative-caret-position="255">
+                  <caret line="170" column="46" lean-forward="true" selection-start-line="170" selection-start-column="46" selection-end-line="170" selection-end-column="46" />
                 </state>
               </provider>
             </entry>
@@ -110,8 +108,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/skeleton/js/robot.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="630">
-                  <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+                <state relative-caret-position="270">
+                  <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
                 </state>
               </provider>
             </entry>
@@ -123,8 +121,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="107">
-                  <caret line="146" column="77" lean-forward="true" selection-start-line="146" selection-start-column="77" selection-end-line="146" selection-end-column="77" />
+                <state relative-caret-position="503">
+                  <caret line="164" column="30" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="30" />
                 </state>
               </provider>
             </entry>
@@ -135,8 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>secondArm</find>
-      <find>axes3</find>
       <find>control</find>
       <find>enabled</find>
       <find>controls</find>
@@ -162,9 +158,11 @@
       <find>MouseMove</find>
       <find>mouseYOnMouseDown</find>
       <find>onMouseDown</find>
-      <find>this.on</find>
       <find>removeEventListener</find>
       <find>rotateAroundObjectAxis</find>
+      <find>this.on</find>
+      <find>reset</find>
+      <find>renderBla</find>
     </findStrings>
     <replaceStrings>
       <replace>translation_m</replace>
@@ -186,6 +184,7 @@
       <replace>secondarm</replace>
       <replace>axes_upperarm</replace>
       <replace>onMouseMoved</replace>
+      <replace>renderRaycasting</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -196,10 +195,10 @@
       <list>
         <option value="$PROJECT_DIR$/examples/00b-input/js/main.js" />
         <option value="$PROJECT_DIR$/skeleton/js/util.js" />
-        <option value="$PROJECT_DIR$/skeleton/js/htmlcontroller.js" />
-        <option value="$PROJECT_DIR$/skeleton/js/robot.js" />
         <option value="$PROJECT_DIR$/skeleton/js/controls/OrbitControls.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.js" />
+        <option value="$PROJECT_DIR$/skeleton/js/robot.js" />
+        <option value="$PROJECT_DIR$/skeleton/js/htmlcontroller.js" />
         <option value="$PROJECT_DIR$/skeleton/js/scenecontroller.js" />
       </list>
     </option>
@@ -386,22 +385,22 @@
       <workItem from="1541019142334" duration="42518000" />
       <workItem from="1541434470411" duration="7084000" />
       <workItem from="1541533764447" duration="9849000" />
-      <workItem from="1541578139186" duration="5492000" />
+      <workItem from="1541578139186" duration="7831000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78552000" />
+    <option name="totallyTimeSpent" value="80891000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="33" width="2560" height="1004" extended-state="7" />
+    <frame x="0" y="33" width="2560" height="1004" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11694982" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.1058264" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.4937286" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32977462" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39952436" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -511,24 +510,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/js/htmlcontroller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="48" lean-forward="true" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/js/util.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
           <caret line="42" column="13" lean-forward="true" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/js/robot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -546,6 +531,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="164" column="30" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/js/robot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/js/controls/OrbitControls.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -553,17 +552,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.js">
+    <entry file="file://$PROJECT_DIR$/skeleton/js/htmlcontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="146" column="77" lean-forward="true" selection-start-line="146" selection-start-column="77" selection-end-line="146" selection-end-column="77" />
+        <state relative-caret-position="474">
+          <caret line="86" column="64" selection-start-line="86" selection-start-column="33" selection-end-line="86" selection-end-column="64" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/js/scenecontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
+        <state relative-caret-position="255">
+          <caret line="170" column="46" lean-forward="true" selection-start-line="170" selection-start-column="46" selection-end-line="170" selection-end-column="46" />
         </state>
       </provider>
     </entry>

@@ -5,7 +5,17 @@ var Robot = function() {
 };
 
 Robot.prototype.buildRobot = function(){
+    var extraArm = createJoint(0.4, 0.1, 0.1, "blue");
+    var pivot_extraarm = addPivotTo(extraArm, 0.2);
+    var axes_extraarm = buildAxes(0.5);
+    pivot_extraarm.add(axes_extraarm);
+    pivot_extraarm.rotateOnAxis(THREE.Vector3.ZAxis, degToRad(-40));
+    var group_extraarm = new THREE.Group();
+    group_extraarm.add(pivot_extraarm);
+    group_extraarm.translateX(0.2);
+
     var forearm = createJoint(0.4, 0.1, 0.1, "blue");
+    forearm.add(group_extraarm);
     var pivot_forearm = addPivotTo(forearm, 0.2);
     var axes_forearm = buildAxes(0.5);
     pivot_forearm.add(axes_forearm);

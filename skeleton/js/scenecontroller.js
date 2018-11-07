@@ -67,7 +67,7 @@ function rotateAroundObjectAxis(object, axis, radians) {
     object.rotation.setFromRotationMatrix(object.matrix);
 }
 
-SceneController.prototype.renderBla = function()
+SceneController.prototype.renderRaycasting = function()
 {
     // update the picking ray with the camera and mouse position
     this.raycaster.setFromCamera( this.mouse, this.camera );
@@ -78,7 +78,7 @@ SceneController.prototype.renderBla = function()
     for ( var i = 0; i < intersects.length; i++ ) {
         if ( currentlyPickedMesh !== null ) {
             // console.log(currentlyPickedMesh.parent);
-            rotateAroundObjectAxis(currentlyPickedMesh.parent.parent, new THREE.Vector3(1,0,0), degToRad(10));
+            // rotateAroundObjectAxis(currentlyPickedMesh.parent.parent, new THREE.Vector3(1,0,0), degToRad(10));
             this.decolourNode(currentlyPickedMesh.parent.parent);
         }
         currentlyPickedMesh = intersects[ i ].object;
@@ -89,7 +89,16 @@ SceneController.prototype.renderBla = function()
 
 };
 
-
+var raycastingEnabled;
+SceneController.prototype.toggleRaycasting = function()
+{
+    if (raycastingEnabled !== true) {
+        raycastingEnabled = true;
+    } else {
+        raycastingEnabled = false;
+    }
+    console.log(raycastingEnabled);
+};
 
 SceneController.prototype.setup = function()
 {
@@ -157,12 +166,18 @@ SceneController.prototype.render = function() {
     this.renderer.render( this.scene, this.camera );
 };
 
+
+
 SceneController.prototype.animate = function()
 {
     //bind? --> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+    if (raycastingEnabled === true) {
+        requestAnimationFrame( this.renderRaycasting.bind(this) );
+    } else if (raycastingEnabled === false) {
+        this.decolourNode(currentlyPickedMesh.parent.parent);
+    }
     requestAnimationFrame( this.animate.bind(this) );
     window.addEventListener( 'mousemove', this.onMouseMove.bind(this), false );
-    requestAnimationFrame( this.renderBla.bind(this) );
     this.controls.update();
 };
 

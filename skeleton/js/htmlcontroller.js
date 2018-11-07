@@ -86,6 +86,9 @@ HtmlController.prototype.onDocumentKeyDown = function(event) {
         case "c":
             this.sceneController.traverseAndToggleAxesVisibility();
             break;
+        case "e":
+            this.sceneController.toggleRaycasting();
+            break;
         case "z":
             this.sceneController.logCSN();
             break;
