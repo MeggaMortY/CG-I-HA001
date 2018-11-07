@@ -6,35 +6,36 @@ var SceneController = function(document)
         preserveDrawingBuffer: true  // to allow screenshot
     } );
     this.raycaster = new THREE.Raycaster();
-    this.mouse = new THREE.Vector2();
-    this.targetRotation = new THREE.Vector2();
-    this.mouseDown = new THREE.Vector2();
-    this.targetRotationDown = new THREE.Vector2();
 };
 
+var mouse = new THREE.Vector2();
+var targetRotation = new THREE.Vector2();
+var mouseDown = new THREE.Vector2();
+var targetRotationDown = new THREE.Vector2();
 SceneController.prototype.onDocumentMouseDown = function( event ) {
 
     event.preventDefault();
 
-    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-    document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+    document.addEventListener( 'mousemove', this.onMouseMove, false );
 
-    this.mouseDown.x = event.clientX - (window.innerWidth / 2);
-    this.targetRotationDown.x = this.targetRotation.x;
+    mouseDown.x = event.clientX - (window.innerWidth / 2);
+    targetRotationDown.x = targetRotation.x;
 
-    this.mouseDown.y = event.clientY - (window.innerHeight / 2);
-    this.targetRotationDown.y = this.targetRotation.y;
+    mouseDown.y = event.clientY - (window.innerHeight / 2);
+    targetRotationDown.y = targetRotation.y;
+    console.log(targetRotationDown);
+    if (currentlyPickedMesh !== null && raycastingEnabled === true) {
+        rotateAroundObjectAxis(currentlyPickedMesh.parent.parent, new THREE.Vector3(0,1,0), degToRad(-targetRotationDown.x*8));
+        rotateAroundObjectAxis(currentlyPickedMesh.parent.parent, new THREE.Vector3(0,0,1), degToRad(-targetRotationDown.y*8));
+    }
 };
 
 SceneController.prototype.onMouseMove = function( event )
 {
-    // calculate mouse position in normalized device coordinates
-    // (-1 to +1) for both components
-
-    this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-    this.targetRotation.x = ( this.mouse.x - this.mouseDown.x ) * 0.00025;
-    this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-    this.targetRotation.y = ( this.mouse.y - this.mouseDown.y ) * 0.00025;
+    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    targetRotation.x = ( mouseDown.x - mouse.x ) * 0.00025;
+    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    targetRotation.y = ( mouseDown.y - mouse.y ) * 0.00025;
 };
 
 SceneController.prototype.traverseSceneAndGrabMeshes = function() {
@@ -47,18 +48,6 @@ SceneController.prototype.traverseSceneAndGrabMeshes = function() {
     } );
 };
 
-
-var rotWorldMatrix;
-
-// Rotate an object around an arbitrary axis in world space
-function rotateAroundWorldAxis(object, axis, radians) {
-    rotWorldMatrix = new THREE.Matrix4();
-    rotWorldMatrix.makeRotationAxis(axis.normalize(), radians);
-    rotWorldMatrix.multiply(object.matrix);        // pre-multiply
-    object.matrix = rotWorldMatrix;
-    object.rotation.setFromRotationMatrix(object.matrix);
-}
-
 function rotateAroundObjectAxis(object, axis, radians) {
     var rotationMatrix = new THREE.Matrix4();
 
@@ -70,15 +59,12 @@ function rotateAroundObjectAxis(object, axis, radians) {
 SceneController.prototype.renderRaycasting = function()
 {
     // update the picking ray with the camera and mouse position
-    this.raycaster.setFromCamera( this.mouse, this.camera );
+    this.raycaster.setFromCamera( mouse, this.camera );
     // calculate objects intersecting the picking ray
     var intersects = this.raycaster.intersectObjects( meshes);
 
-    // console.log(intersects);
     for ( var i = 0; i < intersects.length; i++ ) {
         if ( currentlyPickedMesh !== null ) {
-            // console.log(currentlyPickedMesh.parent);
-            // rotateAroundObjectAxis(currentlyPickedMesh.parent.parent, new THREE.Vector3(1,0,0), degToRad(10));
             this.decolourNode(currentlyPickedMesh.parent.parent);
         }
         currentlyPickedMesh = intersects[ i ].object;
@@ -93,11 +79,14 @@ var raycastingEnabled;
 SceneController.prototype.toggleRaycasting = function()
 {
     if (raycastingEnabled !== true) {
+        this.controls.enabled = false;
         raycastingEnabled = true;
+        document.addEventListener( 'mousemove', this.onDocumentMouseDown, false );
     } else {
+        document.removeEventListener( 'mousemove', this.onDocumentMouseDown, false );
         raycastingEnabled = false;
+        this.controls.enabled = true;
     }
-    console.log(raycastingEnabled);
 };
 
 SceneController.prototype.setup = function()
@@ -163,6 +152,7 @@ SceneController.prototype.setupLight = function()
 
 SceneController.prototype.render = function() {
 
+    document.addEventListener( 'mousemove', this.onMouseMove, false );
     this.renderer.render( this.scene, this.camera );
 };
 
@@ -177,12 +167,13 @@ SceneController.prototype.animate = function()
         this.decolourNode(currentlyPickedMesh.parent.parent);
     }
     requestAnimationFrame( this.animate.bind(this) );
-    window.addEventListener( 'mousemove', this.onMouseMove.bind(this), false );
     this.controls.update();
 };
 
 SceneController.prototype.reset = function()
 {
+    document.removeEventListener( 'mousemove', this.onDocumentMouseDown, false );
+    raycastingEnabled = false;
     this.scene.remove(rootNode.parent);
     this.setup();
 };
@@ -198,9 +189,11 @@ SceneController.prototype.traverseAndToggleAxesVisibility = function ()
     var upperarm_axes = rootNode.children[0].children[1];
     var forearm_axes = rootNode.children[0].children[0].children[0].children[0].children[1];
     var secondarm_axes = rootNode.children[0].children[0].children[1].children[0].children[1];
+    var extraarm_axes = rootNode.children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[1];
     this.toggleAxesVisibility(upperarm_axes);
     this.toggleAxesVisibility(forearm_axes);
     this.toggleAxesVisibility(secondarm_axes);
+    this.toggleAxesVisibility(extraarm_axes);
 };
 
 SceneController.prototype.toggleAxesVisibility = function (parent) {

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32d58444-0664-4c98-bef9-f1dfffaba3a1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/skeleton/js/htmlcontroller.js" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/js/htmlcontroller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skeleton/js/robot.js" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/js/robot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skeleton/js/scenecontroller.js" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton/js/scenecontroller.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -45,19 +43,19 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="111" />
-          <entry key="js" value="12448" />
+          <entry key="js" value="12906" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="12448" />
+          <entry key="JavaScript" value="12906" />
           <entry key="PLAIN_TEXT" value="111" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.49798658">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file pinned="false" current-in-tab="false">
@@ -90,8 +88,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/skeleton/js/scenecontroller.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="170" column="46" lean-forward="true" selection-start-line="170" selection-start-column="46" selection-end-line="170" selection-end-column="46" />
+                <state relative-caret-position="509">
+                  <caret line="194" column="81" selection-start-line="194" selection-start-column="81" selection-end-line="194" selection-end-column="81" />
                 </state>
               </provider>
             </entry>
@@ -99,8 +97,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/skeleton/js/controls/OrbitControls.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="260">
-                  <caret line="751" column="36" selection-start-line="751" selection-start-column="17" selection-end-line="751" selection-end-column="36" />
+                <state relative-caret-position="-2">
+                  <caret line="456" lean-forward="true" selection-start-line="456" selection-end-line="456" />
                 </state>
               </provider>
             </entry>
@@ -108,7 +106,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/skeleton/js/robot.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
+                <state relative-caret-position="162">
                   <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
                 </state>
               </provider>
@@ -133,13 +131,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>control</find>
-      <find>enabled</find>
-      <find>controls</find>
-      <find>render</find>
-      <find>camera</find>
       <find>console.log</find>
-      <find>onMouseMove</find>
       <find>onDocumentMouseMove</find>
       <find>renderer</find>
       <find>onmo</find>
@@ -163,6 +155,12 @@
       <find>this.on</find>
       <find>reset</find>
       <find>renderBla</find>
+      <find>onMouseMove</find>
+      <find>mouse.x</find>
+      <find>addeve</find>
+      <find>bind</find>
+      <find>mouseDown</find>
+      <find>this.mouse</find>
     </findStrings>
     <replaceStrings>
       <replace>translation_m</replace>
@@ -385,18 +383,18 @@
       <workItem from="1541019142334" duration="42518000" />
       <workItem from="1541434470411" duration="7084000" />
       <workItem from="1541533764447" duration="9849000" />
-      <workItem from="1541578139186" duration="7831000" />
+      <workItem from="1541578139186" duration="11570000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80891000" />
+    <option name="totallyTimeSpent" value="84630000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="33" width="2560" height="1004" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11694982" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11694982" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -538,20 +536,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/js/robot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton/js/controls/OrbitControls.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="751" column="36" selection-start-line="751" selection-start-column="17" selection-end-line="751" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/js/htmlcontroller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="474">
@@ -559,10 +543,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/js/robot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton/js/controls/OrbitControls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2">
+          <caret line="456" lean-forward="true" selection-start-line="456" selection-end-line="456" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/skeleton/js/scenecontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="170" column="46" lean-forward="true" selection-start-line="170" selection-start-column="46" selection-end-line="170" selection-end-column="46" />
+        <state relative-caret-position="509">
+          <caret line="194" column="81" selection-start-line="194" selection-start-column="81" selection-end-line="194" selection-end-column="81" />
         </state>
       </provider>
     </entry>
